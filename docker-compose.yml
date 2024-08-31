@@ -1,0 +1,21 @@
+version: "3"
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PASSWORD=postgres
+      - DB_USER=user
+      - DB_NAME=consumo_db
+  db:
+    image: "postgres:latest"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: consumo_db
+    ports:
+      - "5432:5432"
